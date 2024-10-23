@@ -1,4 +1,4 @@
-import { createCallerFactory, createTRPCRouter, publicProcedure, protectedProcedure } from "@/server/api/trpc";
+import { createCallerFactory, createTRPCRouter, publicProcedure } from '@/server/api/trpc'
 
 /**
  * This is the primary router for your server.
@@ -6,19 +6,13 @@ import { createCallerFactory, createTRPCRouter, publicProcedure, protectedProced
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  // Example of a public procedure
-  publicExample: publicProcedure.query(() => {
-    return "This is a public query";
-  }),
-
-  // Example of a protected procedure
-  protectedExample: protectedProcedure.query(({ ctx }) => {
-    return `Hello, ${ctx.auth.userId}!`;
-  }),
-});
+    publicRoute: publicProcedure.query(() => {
+        return 'This is public'
+    })
+})
 
 // export type definition of API
-export type AppRouter = typeof appRouter;
+export type AppRouter = typeof appRouter
 
 /**
  * Create a server-side caller for the tRPC API.
@@ -27,4 +21,4 @@ export type AppRouter = typeof appRouter;
  * const res = await trpc.post.all();
  *       ^? Post[]
  */
-export const createCaller = createCallerFactory(appRouter);
+export const createCaller = createCallerFactory(appRouter)
